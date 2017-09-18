@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!--FORMATO DE LA PAGINA DEL REPORTE-->
+
+        <template id="template_hr_assigned_assets2" name="style">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page" style="font-size: 10pt;font-family:Helvetica,Verdana,Arial,sans,Lucida Grande,Calibri;">
+                        <thead>
+                            <tr>
+                                <!--h5 align="right" colspan="4">
+                                    <span t-field="o.company_id.city" />, <span t-field="o.company_id.state_id.name" /> a <span t-field="o.contract_id.date_start" t-field-options='{"format": "dd"}' /> de <span t-field="o.contract_id.date_start" t-field-options='{"format": "MMMM"}' /> del <span t-field="o.contract_id.date_start" t-field-options='{"format": "yyyy"}' />
+                                    <br/><br/><br/><br/><br/><br/>
+                                </h5-->
+                                <h5>
+                                    <b>A quien corresponda</b><br/><br/><br/><br/>
+                                </h5>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">
+                                    Por medio de la presente, hago constar que recibo los siguientes materiales para efectuar mi trabajo por parte de las personas aqui listadas, y que me comprometo a cuidar y hacer buen uso de el equipo que se me entrega, y los cuales debo devolver al finalizar mi contrato con esta empresa.
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                        <br/><br/><br/><br/>
+
+                        <table cellpadding="10" class="table table-bordered">
+                            <tr>
+                                <td><b>Activo</b></td>
+                                <td><b>Asignado por</b></td>
+                                <td><b>Fecha asignación</b></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #ddd;">
+                                <td>
+                                    <span t-field="o.asset_id.name" />
+                                </td>
+                                <td>
+                                    <span t-field="o.assigned_by.name" />
+                                </td>
+                                <td>
+                                    <span t-field="o.create_date" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br/><br/><br/><br/>
+
+                        <center>
+                        <div>
+                            ________________________________________________
+                            <br/>
+                            <t t-if="o.employee">
+                                <span t-field="o.employee" />
+                            </t>
+                            <t t-if="not o.employee">
+                                NO HAY EMPLEADO
+                            </t>
+                            <!--br/>
+                            <span t-field="o.job_id.name" /-->
+                        </div>
+                        </center>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <report 
+            id="format_hr_assigned_assets2"
+            string="activos asignados"
+            model="hr.employee.asset.assignment" 
+            report_type="qweb-pdf"
+            file="hr_employees_assets_denker.template_hr_assigned_assets2" 
+            name="hr_employees_assets_denker.template_hr_assigned_assets2"
+        />
+
+        <record id="paperformat_hr_assigned_assets2" model="report.paperformat">
+            <field name="name">activos asignados</field>
+            <field name="format">custom</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(4, ref('format_hr_assigned_assets2'))]"/>
+        </record>
+
+    </data>
+</openerp>

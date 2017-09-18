@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+hr_employee_asset_assignment,hr_employee_asset_assignment,model_hr_employee_asset_assignment,hr.group_hr_user,1,1,1,1
+account_asset_asset,account_asset_asset,account_asset.model_account_asset_asset,hr.group_hr_user,1,1,1,1

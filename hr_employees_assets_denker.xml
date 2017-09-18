@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--Employee form view -->
+        <record id="x_view_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@groups='hr.group_hr_user']" position="after">
+                    <page string="Activos">
+                        <separator string="Asignación de activos" />
+                        <field name="employee_ids">
+                            <tree string="Nombre" editable="bottom">
+                                <field name="asset_id" />
+                                <field name="assigned_by"/>
+                                <button name="asset_print" type="object" string="Imprimir" class="oe_highlight" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
